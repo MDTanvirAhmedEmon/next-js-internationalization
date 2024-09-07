@@ -1,6 +1,7 @@
 "use client"
 import { Select } from "antd";
 import { useLocale, useTranslations } from 'next-intl';
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 
@@ -10,19 +11,19 @@ export default function Home() {
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const localActive = useLocale();
+  const locale = useLocale();
 
 
   const handleChange = (value) => {
     startTransition(() => {
       router.replace(`/${value}`)
     })
-
-
   };
 
   return (
     <div className=" container mx-auto py-8">
-      <div className=" mx-4 md:mx-0 float-end h-[10vh]">
+      <div className=" mx-4 md:mx-0 flex justify-between items-center h-[10vh] ">
+        <Link  className=" bg-slate-100 px-4 py-1" href={`${locale}/about`}>About</Link>
         <Select
           defaultValue={localActive}
           style={{ width: 120 }}
